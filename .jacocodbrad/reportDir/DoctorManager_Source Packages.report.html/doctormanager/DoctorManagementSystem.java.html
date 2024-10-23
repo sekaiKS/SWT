@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DoctorManagementSystem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo analysis: &quot;DoctorManager: Source Packages&quot; (uses JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">doctormanager</a> &gt; <span class="el_source">DoctorManagementSystem.java</span></div><h1>DoctorManagementSystem.java</h1><pre class="source lang-java linenums">package doctormanager;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Comparator;
+
+public class DoctorManagementSystem {
+    private List&lt;Doctor&gt; doctors;
+
+<span class="fc" id="L10">    public DoctorManagementSystem() {</span>
+<span class="fc" id="L11">        this.doctors = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L12">    }</span>
+
+    // Add a doctor
+    public void addDoctor(Doctor doctor) {
+<span class="fc" id="L16">        doctors.add(doctor);</span>
+<span class="fc" id="L17">        System.out.println(&quot;Doctor added successfully.&quot;);</span>
+<span class="fc" id="L18">    }</span>
+
+    // Edit a doctor by ID
+    public void editDoctor(int id, String newName, String newDOB, String newSpecialization, int newAvailability, String newEmail, String newMobile) {
+<span class="fc" id="L22">        Doctor doctor = searchDoctorById(id);</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">        if (doctor != null) {</span>
+<span class="nc" id="L24">            doctor.setName(newName);</span>
+<span class="nc" id="L25">            doctor.setDateOfBirth(newDOB);</span>
+<span class="nc" id="L26">            doctor.setSpecialization(newSpecialization);</span>
+<span class="nc" id="L27">            doctor.setAvailability(newAvailability);</span>
+<span class="nc" id="L28">            doctor.setEmail(newEmail);</span>
+<span class="nc" id="L29">            doctor.setMobile(newMobile);</span>
+<span class="nc" id="L30">            System.out.println(&quot;Doctor updated successfully.&quot;);</span>
+        } else {
+<span class="fc" id="L32">            System.out.println(&quot;Doctor with ID &quot; + id + &quot; not found.&quot;);</span>
+        }
+<span class="fc" id="L34">    }</span>
+
+    // Delete a doctor by ID
+    public void deleteDoctor(int id) {
+<span class="fc" id="L38">        Doctor doctor = searchDoctorById(id);</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if (doctor != null) {</span>
+<span class="nc" id="L40">            doctors.remove(doctor);</span>
+<span class="nc" id="L41">            System.out.println(&quot;Doctor deleted successfully.&quot;);</span>
+        } else {
+<span class="fc" id="L43">            System.out.println(&quot;Doctor with ID &quot; + id + &quot; not found.&quot;);</span>
+        }
+<span class="fc" id="L45">    }</span>
+
+    // Search a doctor by ID
+    public Doctor searchDoctorById(int id) {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        for (Doctor doctor : doctors) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            if (doctor.getId() == id) {</span>
+<span class="fc" id="L51">                return doctor;</span>
+            }
+<span class="fc" id="L53">        }</span>
+<span class="fc" id="L54">        return null;</span>
+    }
+
+    // Search doctors by Name
+    public void searchDoctorByName(String name) {
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        for (Doctor doctor : doctors) {</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if (doctor.getName().equalsIgnoreCase(name)) {</span>
+<span class="nc" id="L61">                System.out.println(doctor);</span>
+            }
+<span class="nc" id="L63">        }</span>
+<span class="nc" id="L64">    }</span>
+
+    // Sort doctors by Date of Birth
+    public void sortDoctorsByDOB() {
+<span class="fc" id="L68">        doctors.sort(Comparator.comparing(Doctor::getDateOfBirth));</span>
+<span class="fc" id="L69">        System.out.println(&quot;Doctors sorted by Date of Birth.&quot;);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        for (Doctor doctor : doctors) {</span>
+<span class="fc" id="L71">            System.out.println(doctor);</span>
+<span class="fc" id="L72">        }</span>
+<span class="fc" id="L73">    }</span>
+
+    // Get all doctors
+    public List&lt;Doctor&gt; getDoctors() {
+<span class="fc" id="L77">        return doctors;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
